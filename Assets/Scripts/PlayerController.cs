@@ -23,6 +23,9 @@ public class PlayerController : NetworkBehaviour
     private Quaternion targetRotation;
     private Quaternion lastRotation;
 
+    public TMP_Text myNameTag;
+    public string myName;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -39,6 +42,8 @@ public class PlayerController : NetworkBehaviour
             MovePlayerCamera();
 
             SubmitMovementServerRpc(transform.position, Velocity, transform.rotation);
+            myName = PlayerPrefs.GetString("clientName");
+            myNameTag.text = myName;
         }
         else
         {
@@ -83,6 +88,8 @@ public class PlayerController : NetworkBehaviour
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 10f);
         // Smoothly interpolate rotation
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+
+        myNameTag.text = myName;
     }
 
     [ServerRpc]

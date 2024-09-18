@@ -9,17 +9,13 @@ public class PlayerNetcode : NetworkBehaviour
     public Camera myCamera;
     public AudioListener myAudioListener;
 
-    public TMP_Text myNameTag;
+    
     public Vector3 spawnLocation;
-
-    public TMP_Text myJoinCode;
 
     public override void OnNetworkSpawn()
     {
         myCamera.gameObject.SetActive(IsOwner);
         myAudioListener.enabled = IsOwner;
-
-        myNameTag.text = PlayerPrefs.GetString("clientName");
 
         
 
@@ -27,10 +23,5 @@ public class PlayerNetcode : NetworkBehaviour
         {
             transform.position = spawnLocation;
         }
-    }
-
-    private void Update()
-    {
-        myJoinCode.text = PlayerPrefs.GetString("joinCode");
     }
 }
