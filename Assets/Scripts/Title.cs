@@ -56,6 +56,7 @@ public class Title : MonoBehaviour
     {
         if(nameText.text != "" && joinCodeText.text != "")
         {
+            NameManager.Instance.PlayerName = nameText.text;
             joinRelay(joinCodeText.text);
         }
     }

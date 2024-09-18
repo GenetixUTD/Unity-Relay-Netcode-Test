@@ -328,7 +328,6 @@ MonoBehaviour:
   myAudioListener: {fileID: 3964647245099828474}
   myNameTag: {fileID: 8129399955593784300}
   spawnLocation: {x: 0, y: 2, z: 0}
-  myJoinCode: {fileID: 0}
 --- !u!1 &4517991983158229667
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5460778215478091461
 Transform:
   m_ObjectHideFlags: 0
