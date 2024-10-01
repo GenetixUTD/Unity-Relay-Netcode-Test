@@ -72,17 +72,22 @@ public class Title : MonoBehaviour
     {
         try
         {
+            //Attempt join with given join code
             JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
 
+            //Create Relay Server Data
             RelayServerData relayServerData = new RelayServerData(joinAllocation, "dtls");
 
+            //Set Relay Server Data
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
 
+            //Join multiplayer world and start network client
             NetworkManager.Singleton.StartClient();
             NetworkManager.Singleton.SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
         }
         catch (RelayServiceException e)
         {
+            //Catch exception from attempting to join
             Debug.Log(e);
         }
     }
@@ -91,8 +96,10 @@ public class Title : MonoBehaviour
     {
         try
         {
+            //Create allocation
             Allocation allocation = await RelayService.Instance.CreateAllocationAsync(3);
 
+            //Grab join code from the created allocation
             string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
             Debug.Log(joinCode);
             PlayerPrefs.SetString("joinCode", joinCode);
@@ -100,6 +107,8 @@ public class Title : MonoBehaviour
 
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
 
+
+            //Join multiplayer world as network server
             NetworkManager.Singleton.StartServer();
 
             NetworkManager.Singleton.SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
