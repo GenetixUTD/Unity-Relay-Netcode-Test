@@ -7,6 +7,7 @@ public class PersistentNetworkManager : MonoBehaviour
 {
     private void Awake()
     {
+        
         // Check if there's already a NetworkManager in the scene
         if (NetworkManager.Singleton != null && NetworkManager.Singleton != this)
         {

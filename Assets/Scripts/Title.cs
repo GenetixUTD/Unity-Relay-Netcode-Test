@@ -19,9 +19,12 @@ public class Title : MonoBehaviour
     public TMP_InputField nameText;
     public TMP_InputField joinCodeText;
 
+    private bool startingHost;
+
     // Start is called before the first frame update
     async void Start()
     {
+        startingHost = false;
         if(PlayerPrefs.HasKey("clientName"))
         {
             nameText.text = PlayerPrefs.GetString("clientName");
@@ -38,11 +41,12 @@ public class Title : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F5) && Input.GetKeyDown(KeyCode.H))
+        if(Input.GetKey(KeyCode.F5) && Input.GetKey(KeyCode.H) && startingHost != true)
         {
             if (nameText.text != "" && NetworkManager.Singleton != null)
             {
                 Debug.Log("Starting Host");
+                startingHost = true;
                 createRelay();
             }
             else
